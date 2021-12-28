@@ -7,14 +7,12 @@ class Main
     {
         var puzzles:Array<Puzzle> = [
             new Puzzle1(),
-            new Puzzle1Part2()
+            new Puzzle1Part2(),
+            new Puzzle2()
         ];
 
-        for (it in puzzles)
-        {
-            it.test();
-            it.run();
-        }
+        for (it in puzzles) it.test();
+        for (it in puzzles) it.run();
 
     }
 
