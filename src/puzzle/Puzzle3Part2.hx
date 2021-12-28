@@ -18,8 +18,8 @@ class Puzzle3Part2 extends Puzzle3
 
         for (i in 0...data[0].length)
         {
-            if (oxygen.length != 1) oxygen = filterData(oxygen.copy(), i, OXYGEN);
-            if (co2.length != 1) co2 = filterData(co2.copy(), i, CO2);
+            if (oxygen.length != 1) oxygen = filterData(oxygen, i, OXYGEN);
+            if (co2.length != 1) co2 = filterData(co2, i, CO2);
         }
 
         output('life support rating is ${oxygen[0].binaryToDecimal() * co2[0].binaryToDecimal()}');
