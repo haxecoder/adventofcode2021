@@ -30,8 +30,16 @@ class Puzzle4 extends Puzzle
     var numbers:Array<Int>;
     var boards:Array<Array<Int>>;
 
+    var winBoardsIndexes:Array<Int>;
+    var winBoards:Array<Array<Int>>;
+    var winNumbers:Array<Array<Int>>;
+
     override function execute()
     {
+        winBoards = [];
+        winNumbers = [];
+        winBoardsIndexes = [];
+
         var numbersPlayed = numbers.slice(0, 4);
 
         for (i in 4...numbers.length)
@@ -50,13 +58,33 @@ class Puzzle4 extends Puzzle
                         for (n in numbersPlayed) if (v.contains(n)) score++;
                         if (score == 5)
                         {
-                            bingo(it, numbersPlayed);
-                            return;
+                            addWinBoard(boards.indexOf(it), numbersPlayed);
                         }
                     }
                 }
             }
         }
+        checkWinner();
+    }
+
+    function checkWinner()
+    {
+        if (winBoards.length != 0)
+        {
+            bingo(winBoards[0], winNumbers[0]);
+            return;
+        }
+        output('all boards failed');
+    }
+
+    function addWinBoard(boardIndex:Int, numbersPlayed:Array<Int>)
+    {
+        if (winBoardsIndexes.contains(boardIndex)) return;
+
+        winBoardsIndexes.push(boardIndex);
+        var board = boards[boardIndex];
+        winBoards.push(board.copy());
+        winNumbers.push(numbersPlayed.copy());
     }
 
     function bingo(board:Array<Int>, numbersPlayed:Array<Int>)
