@@ -1,6 +1,7 @@
 package puzzle;
 
 using puzzle.Puzzle5;
+using ArrayUtils;
 
 class Puzzle5 extends Puzzle
 {
@@ -16,7 +17,7 @@ class Puzzle5 extends Puzzle
         return false;
     }
 
-    public static function getCoords(segment:String):Array<String>
+    public static function getStraightCoords(segment:String):Array<String>
     {
         var cords = segment.split(' -> ');
         var coords1 = cords[0].split(',');
@@ -55,31 +56,31 @@ class Puzzle5 extends Puzzle
     }
 
     var segments:Array<String>;
-    var diagram:Map<String, Int>;
 
     override function execute()
     {
-        diagram = new Map<String, Int>();
+        var diagram = new Map<String, Int>();
 
-        for (it in segments)
-        {
-            if (it.isStraight())
-            {
-                var value:Int = 0;
-                for (c in it.getCoords())
-                {
-                    if (!diagram.exists(c)) diagram.set(c, 0);
-                    value = diagram.get(c);
-                    diagram.set(c, value + 1);
-                }
-            }
-        }
+        segments
+        .filter((it:String) -> it.isStraight())
+        .each((it:String) -> setCoordsToDiagram(it.getStraightCoords(), diagram));
 
         var dangerousPointsCount:Int = 0;
 
         for (key in diagram.keys()) if (diagram.get(key) >= 2) dangerousPointsCount++;
 
         output('dangerous points count is ${dangerousPointsCount}');
+    }
+
+    function setCoordsToDiagram(cords:Array<String>, diagram:Map<String, Int>)
+    {
+        var value:Int = 0;
+        for (c in cords)
+        {
+            if (!diagram.exists(c)) diagram.set(c, 0);
+            value = diagram.get(c);
+            diagram.set(c, value + 1);
+        }
     }
 
     override function initData()

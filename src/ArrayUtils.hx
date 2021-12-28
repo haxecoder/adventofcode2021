@@ -1,5 +1,7 @@
 package;
 
+import haxe.Constraints.Function;
+
 class ArrayUtils
 {
 
@@ -10,6 +12,11 @@ class ArrayUtils
             return null;
         }
         return a[a.length - 1];
+    }
+
+    public static function each<T>(arr:Array<T>, f:Function)
+    {
+        Lambda.iter(arr, cast f);
     }
 
 }
