@@ -1,6 +1,5 @@
 package puzzle;
 
-using sys.io.File;
 using ArrayUtils;
 
 class Puzzle1 extends Puzzle
