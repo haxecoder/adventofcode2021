@@ -1,8 +1,9 @@
 package;
 
-import haxe.Int64;
-import haxe.Int64Helper;
 import haxe.Constraints.Function;
+import haxe.Int64Helper;
+import haxe.Int64;
+using ArrayUtils;
 
 class ArrayUtils
 {
@@ -28,4 +29,20 @@ class ArrayUtils
         return result;
     }
 
+    public static function getIntsSum(arr:Array<Int>):Int
+    {
+        var result:Int = 0;
+        for (it in arr) result += it;
+        return result;
+    }
+
+    public static function getMaxInt(arr:Array<Int>):Int
+    {
+        return arr.reduce((a:Int, c:Int) -> Std.int(Math.max(a, c)), 0);
+    }
+
+    public static function reduce<A, B>(arr:Array<A>, f:A->B->B, initial:B):B
+    {
+        return Lambda.fold(arr, f, initial);
+    }
 }
