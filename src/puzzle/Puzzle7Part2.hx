@@ -2,11 +2,8 @@ package puzzle;
 
 using ArrayUtils;
 
-class Puzzle7 extends Puzzle
+class Puzzle7Part2 extends Puzzle7
 {
-
-    var data:Array<Float>;
-
     override function execute()
     {
         data.sort((a:Float, b:Float) -> Math.floor(a - b));
@@ -14,22 +11,16 @@ class Puzzle7 extends Puzzle
         var numbers:Array<Float> = [for (i in 0...maxInt) 0];
         var costs = numbers.copy();
         for (it in data) numbers[Math.floor(it)]++;
-        for (i in 0...numbers.length) for (j in 0...numbers.length) costs[i] += Math.abs(j - i) * numbers[j];
+        for (i in 0...numbers.length)
+        {
+            for (j in 0...numbers.length)
+            {
+                var steps = Math.abs(j - i);
+                costs[i] += (steps * (steps + 1) / 2) * numbers[j];
+            }
+        }
 
         costs.sort((a:Float, b:Float) -> Math.floor(a - b));
         output('lowest fuel consumption is ${costs[0]}');
     }
-
-    override function initData()
-    {
-        data = [for (it in dataRaw.split(',')) Std.parseFloat(it)];
-    }
-
-    override function initTestData()
-    {
-        data = [
-            16,1,2,0,4,2,7,1,2,14
-        ];
-    }
-
 }
