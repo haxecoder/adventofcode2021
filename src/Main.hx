@@ -16,11 +16,12 @@ class Main
 //            new Puzzle4Part2(),
 //            new Puzzle5(),
 //            new Puzzle5Part2(),
-            new Puzzle6()
+            new Puzzle6(),
+//            new Puzzle6Part2()
         ];
 
         for (it in puzzles) it.test();
-        for (it in puzzles) it.run();
+//        for (it in puzzles) it.run();
     }
 
 }
