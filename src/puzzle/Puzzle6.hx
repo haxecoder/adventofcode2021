@@ -20,7 +20,8 @@ class Puzzle6 extends Puzzle
     {
         var fauna:Array<Int64> = [for (i in 0...9) Int64Helper.fromFloat(0)];
         for (it in fishes) fauna[it]++;
-        for (i in 0...daysCount) {
+        for (i in 0...daysCount)
+        {
             var produced = fauna.shift();
             fauna.push(produced);
             fauna[6] += produced;
