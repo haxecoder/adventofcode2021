@@ -13,7 +13,7 @@ class Main
 //            new Puzzle5(), new Puzzle5Part2(),
 //            new Puzzle6(), new Puzzle6Part2(),
 //            new Puzzle7(), new Puzzle7Part2(),
-            new Puzzle8()
+            new Puzzle8(), new Puzzle8Part2()
         ];
 
         for (it in puzzles) it.test();
